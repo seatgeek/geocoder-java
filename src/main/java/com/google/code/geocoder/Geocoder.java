@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -16,6 +18,8 @@ import java.net.URLEncoder;
  */
 public class Geocoder {
     private static final String GEOCODE_REQUEST_URL = "http://maps.google.com/maps/api/geocode/json?sensor=false";
+
+    private static Log log = LogFactory.getLog(Geocoder.class);
 
     public static GeocodeResponseType geocode(GeocoderRequest geocoderRequest) {
         try {
@@ -33,29 +37,25 @@ public class Geocoder {
             if (StringUtils.isNotBlank(region)) {
                 urlString += "&region =" + URLEncoder.encode(region, "UTF-8");
             }
-            urlString += "";
-
-            System.out.println("urlString = " + urlString);
+            log.error("url: " + urlString);
 
             GsonBuilder gsonBuilder = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
             Gson gson = gsonBuilder.create();
 
             final HttpClient httpClient = new HttpClient();
+
             final GetMethod getMethod = new GetMethod(urlString);
             try {
                 httpClient.executeMethod(getMethod);
                 Reader reader = new InputStreamReader(getMethod.getResponseBodyAsStream(), getMethod.getResponseCharSet());
 
-                GeocodeResponseType res = gson.fromJson(reader, GeocodeResponseType.class);
-
-                System.out.println("resList = " + res);
-
-                return res;
+                return gson.fromJson(reader, GeocodeResponseType.class);
             } finally {
                 getMethod.releaseConnection();
             }
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            log.error(e.getMessage());
             return null;
         }
     }
