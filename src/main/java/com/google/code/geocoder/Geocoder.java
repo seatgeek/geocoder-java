@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
@@ -21,23 +22,9 @@ public class Geocoder {
 
     private static Log log = LogFactory.getLog(Geocoder.class);
 
-    public static GeocodeResponseType geocode(GeocoderRequest geocoderRequest) {
+    public static GeocodeResponseType geocode(final GeocoderRequest geocoderRequest) {
         try {
-            String address = geocoderRequest.getAddress();
-            String language = geocoderRequest.getLanguage();
-            String region = geocoderRequest.getRegion();
-
-            String urlString = GEOCODE_REQUEST_URL;
-            if (StringUtils.isNotBlank(address)) {
-                urlString += "&address=" + URLEncoder.encode(address, "UTF-8");
-            }
-            if (StringUtils.isNotBlank(language)) {
-                urlString += "&language=" + URLEncoder.encode(language, "UTF-8");
-            }
-            if (StringUtils.isNotBlank(region)) {
-                urlString += "&region =" + URLEncoder.encode(region, "UTF-8");
-            }
-            log.error("url: " + urlString);
+            final String urlString = getURL(geocoderRequest);
 
             GsonBuilder gsonBuilder = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
             Gson gson = gsonBuilder.create();
@@ -54,9 +41,28 @@ public class Geocoder {
                 getMethod.releaseConnection();
             }
         } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
             log.error(e.getMessage());
             return null;
         }
+    }
+
+    private static String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
+        final String address = geocoderRequest.getAddress();
+        final String language = geocoderRequest.getLanguage();
+        final String region = geocoderRequest.getRegion();
+
+        String urlString = GEOCODE_REQUEST_URL;
+        if (StringUtils.isNotBlank(address)) {
+            urlString += "&address=" + URLEncoder.encode(address, "UTF-8");
+        }
+        if (StringUtils.isNotBlank(language)) {
+            urlString += "&language=" + URLEncoder.encode(language, "UTF-8");
+        }
+        if (StringUtils.isNotBlank(region)) {
+            urlString += "&region =" + URLEncoder.encode(region, "UTF-8");
+        }
+        log.debug("url: " + urlString);
+        return urlString;
     }
 }
