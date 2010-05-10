@@ -9,15 +9,17 @@ import org.junit.Test;
 public class GeocoderTest extends Assert {
     @Test
     public void testGeocode() throws Exception {
+        final Geocoder geocoder = new Geocoder();
+
         GeocodeResponseType geocoderResponse;
 
-        geocoderResponse = Geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17", "uk"));
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = Geocoder.geocode(new GeocoderRequest("Бровари, вул. Київська 118", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("Бровари, вул. Київська 118", "uk"));
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = Geocoder.geocode(new GeocoderRequest("2, Гагаріна просп., Кривий Ріг", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("2, Гагаріна просп., Кривий Ріг", "uk"));
         assertNotNull(geocoderResponse);
     }
 }
