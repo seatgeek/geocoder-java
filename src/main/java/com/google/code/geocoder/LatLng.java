@@ -16,6 +16,11 @@ public class LatLng {
         this.lng = lng;
     }
 
+    public LatLng(String lat, String lng) {
+        this.lat = new BigDecimal(lat);
+        this.lng = new BigDecimal(lng);
+    }
+
     public BigDecimal getLat() {
         return lat;
     }
@@ -32,5 +37,7 @@ public class LatLng {
         this.lng = lng;
     }
 
-
+    public String toString() {
+        return lat.toString() + "," + lng.toString();
+    }
 }

@@ -6,6 +6,7 @@
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder</artifactId>
     <name>geocoder</name>
+    <description>Java API for Google geocoder v3</description>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -114,7 +115,7 @@
             </plugins>
         </pluginManagement>
     </build>
-    
+
     <ciManagement>
         <system>
             configuration

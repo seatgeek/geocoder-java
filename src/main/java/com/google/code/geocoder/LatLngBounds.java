@@ -6,6 +6,14 @@ package com.google.code.geocoder;
 public class LatLngBounds {
     private LatLng southwest, northeast;
 
+    public LatLngBounds() {
+    }
+
+    public LatLngBounds(final LatLng southwest, final LatLng northeast) {
+        this.southwest = southwest;
+        this.northeast = northeast;
+    }
+
     public LatLng getSouthwest() {
         return southwest;
     }
@@ -20,5 +28,10 @@ public class LatLngBounds {
 
     public void setNortheast(LatLng northeast) {
         this.northeast = northeast;
+    }
+
+    @Override
+    public String toString() {
+        return northeast.toString() + '|' + southwest.toString();
     }
 }

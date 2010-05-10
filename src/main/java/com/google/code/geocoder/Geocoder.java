@@ -54,22 +54,37 @@ public class Geocoder {
         }
     }
 
-    private String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
+    protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
+        if (log.isTraceEnabled()) {
+            log.trace(geocoderRequest);
+        }
         final String address = geocoderRequest.getAddress();
+        final LatLngBounds bounds = geocoderRequest.getBounds();
         final String language = geocoderRequest.getLanguage();
         final String region = geocoderRequest.getRegion();
+        final LatLng location = geocoderRequest.getLocation();
 
         String urlString = GEOCODE_REQUEST_URL;
         if (StringUtils.isNotBlank(address)) {
             urlString += "&address=" + URLEncoder.encode(address, "UTF-8");
+        } else if (location != null) {
+            urlString += "&latlng=" + URLEncoder.encode(location.toString(), "UTF-8");
+        } else {
+            log.error("address or location not defined");
         }
         if (StringUtils.isNotBlank(language)) {
             urlString += "&language=" + URLEncoder.encode(language, "UTF-8");
         }
         if (StringUtils.isNotBlank(region)) {
-            urlString += "&region =" + URLEncoder.encode(region, "UTF-8");
+            urlString += "&region=" + URLEncoder.encode(region, "UTF-8");
         }
-        log.debug("url: " + urlString);
+        if (bounds != null) {
+            urlString += "&bounds=" + URLEncoder.encode(bounds.toString(), "UTF-8");
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug("url: " + urlString);
+        }
         return urlString;
     }
 }
