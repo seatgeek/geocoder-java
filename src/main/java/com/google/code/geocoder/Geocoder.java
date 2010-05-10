@@ -33,7 +33,7 @@ public class Geocoder {
         HTTP_CLIENT.setParams(httpClientParams);
     }
 
-    public GeocodeResponseType geocode(final GeocoderRequest geocoderRequest) {
+    public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) {
         try {
             final String urlString = getURL(geocoderRequest);
 
@@ -44,7 +44,7 @@ public class Geocoder {
                 HTTP_CLIENT.executeMethod(getMethod);
                 final Reader reader = new InputStreamReader(getMethod.getResponseBodyAsStream(), getMethod.getResponseCharSet());
 
-                return gson.fromJson(reader, GeocodeResponseType.class);
+                return gson.fromJson(reader, GeocodeResponse.class);
             } finally {
                 getMethod.releaseConnection();
             }

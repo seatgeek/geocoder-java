@@ -11,7 +11,7 @@ public class GeocoderTest extends Assert {
     public void testGeocode() throws Exception {
         final Geocoder geocoder = new Geocoder();
 
-        GeocodeResponseType geocoderResponse;
+        GeocodeResponse geocoderResponse;
 
         geocoderResponse = geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17", "uk"));
         assertNotNull(geocoderResponse);

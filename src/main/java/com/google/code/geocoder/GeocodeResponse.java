@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocodeResponseType {
+public class GeocodeResponse {
     protected GeocoderStatus status;
     protected List<GeocoderResult> results;
 
-    public GeocodeResponseType() {
+    public GeocodeResponse() {
     }
 
     public GeocoderStatus getStatus() {
