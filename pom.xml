@@ -147,7 +147,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3</version>
-                <!--<executions>
+                <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
@@ -157,10 +157,17 @@
                 </executions>
                 <configuration>
                     <archive>
+                        <index>true</index>
+                        <!--
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        -->
                         <manifestEntries>
+                            <url>${pom.url}</url>
+                            <!--
                             <Bundle-RequiredExecutionEnvironment>J2SE-1.6</Bundle-RequiredExecutionEnvironment>
-                            <Export-Package>
-                                <![CDATA[com.google.gson;version=1.4, com.google.gson.annotations;version=1.4, com.google.gson.reflect;version=1.4]]></Export-Package>
+                            <Export-Package><![CDATA[com.google.gson;version=1.4, com.google.gson.annotations;version=1.4, com.google.gson.reflect;version=1.4]]></Export-Package>
                             <Bundle-Version>1.4</Bundle-Version>
                             <Bundle-ContactAddress>http://code.google.com/p/google-gson/</Bundle-ContactAddress>
                             <Bundle-Vendor>Google Gson Project</Bundle-Vendor>
@@ -169,9 +176,10 @@
                             <Bundle-ClassPath>.</Bundle-ClassPath>
                             <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
                             <Bundle-SymbolicName>com.google.gson</Bundle-SymbolicName>
+                            -->
                         </manifestEntries>
                     </archive>
-                </configuration>-->
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -180,7 +188,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -194,6 +202,7 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
