@@ -51,11 +51,11 @@
     <scm>
         <connection>scm:svn:http://geocoder-java.googlecode.com/svn/trunk/</connection>
         <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>http://geocoder-java.codegoogle.com/svn/trunk/</url>
+        <url>https://geocoder-java.codegoogle.com/svn/trunk/</url>
     </scm>
     <issueManagement>
         <system>Google Code Issue Tracking</system>
-        <url>http://code.google.com/p/geocoder-java/issues/list</url>
+        <url>https://code.google.com/p/geocoder-java/issues/list</url>
     </issueManagement>
 
     <!--
