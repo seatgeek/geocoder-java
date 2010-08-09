@@ -27,4 +27,34 @@ public class GeocodeResponse {
     public void setResults(List<GeocoderResult> result) {
         this.results = result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GeocodeResponse that = (GeocodeResponse) o;
+
+        if (results != null ? !results.equals(that.results) : that.results != null) return false;
+        if (status != that.status) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = status != null ? status.hashCode() : 0;
+        result = 31 * result + (results != null ? results.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("GeocodeResponse");
+        sb.append("{status=").append(status);
+        sb.append(", results=").append(results);
+        sb.append('}');
+        return sb.toString();
+    }
 }

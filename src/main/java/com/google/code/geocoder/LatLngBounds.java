@@ -31,6 +31,26 @@ public class LatLngBounds {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LatLngBounds that = (LatLngBounds) o;
+
+        if (northeast != null ? !northeast.equals(that.northeast) : that.northeast != null) return false;
+        if (southwest != null ? !southwest.equals(that.southwest) : that.southwest != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = southwest != null ? southwest.hashCode() : 0;
+        result = 31 * result + (northeast != null ? northeast.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return northeast.toString() + '|' + southwest.toString();
     }
