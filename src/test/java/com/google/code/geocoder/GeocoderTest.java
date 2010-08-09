@@ -54,7 +54,13 @@ public class GeocoderTest extends Assert {
         assertNotNull(geocoderResponse);
 
         //my home :)
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17, кв 3", "uk"));
+        assertNotNull(geocoderResponse);
+
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("Бровари, вул. Київська 17", "uk"));
+        assertNotNull(geocoderResponse);
+
+        geocoderResponse = geocoder.geocode(new GeocoderRequest("Дніпропетровськ, ул. Артема 28, кв 35", "uk"));
         assertNotNull(geocoderResponse);
 
         geocoderResponse = geocoder.geocode(new GeocoderRequest("Odessa, TX", null, null, null));
