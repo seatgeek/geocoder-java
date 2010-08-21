@@ -55,8 +55,8 @@ public class Geocoder {
     }
 
     protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
-        if (log.isDebugEnabled()) {
-            log.debug(geocoderRequest);
+        if (log.isTraceEnabled()) {
+            log.trace(geocoderRequest);
         }
         final String address = geocoderRequest.getAddress();
         final LatLngBounds bounds = geocoderRequest.getBounds();
@@ -70,9 +70,7 @@ public class Geocoder {
         } else if (location != null) {
             urlString += "&latlng=" + URLEncoder.encode(location.toString(), "UTF-8");
         } else {
-            final IllegalArgumentException e = new IllegalArgumentException("Address or location not defined");
-            log.error(e.getMessage());
-            throw e;
+            throw new IllegalArgumentException("Address or location not defined");
         }
         if (StringUtils.isNotBlank(language)) {
             urlString += "&language=" + URLEncoder.encode(language, "UTF-8");
@@ -84,8 +82,8 @@ public class Geocoder {
             urlString += "&bounds=" + URLEncoder.encode(bounds.toString(), "UTF-8");
         }
 
-        if (log.isDebugEnabled()) {
-            log.debug("url: " + urlString);
+        if (log.isTraceEnabled()) {
+            log.trace("url: " + urlString);
         }
         return urlString;
     }
