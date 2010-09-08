@@ -3,14 +3,12 @@ package com.google.code.geocoder;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+@Ignore
 public class MassGeocoderTest extends Assert {
     private static InputStream file;
     private static HSSFWorkbook wb;
