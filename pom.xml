@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
     <packaging>jar</packaging>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <name>Geocoder</name>
     <description>Java API for Google geocoder v3</description>
     <url>http://code.google.com/p/geocoder-java/</url>
@@ -48,9 +47,9 @@
     </licenses>
     -->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.codegoogle.com/svn/trunk/</url>
+        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.2</connection>
+        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.2</developerConnection>
+        <url>https://geocoder-java.codegoogle.com/svn/tags/geocoder-java-0.2</url>
     </scm>
     <issueManagement>
         <system>Google Code Issue Tracking</system>
