@@ -25,7 +25,13 @@ public class ReverseGeocoderTest extends Assert {
         final Geocoder geocoder = new Geocoder();
         GeocodeResponse geocoderResponse;
 
+        //http://code.google.com/intl/uk/apis/maps/documentation/geocoding/#ReverseGeocoding
         geocoderResponse = geocoder.geocode(new GeocoderRequest(new LatLng("40.714224", "-73.961452"), "en"));
         assertNotNull(geocoderResponse);
+        assertEquals(geocoderResponse.getStatus(), GeocoderStatus.OK);
+        assertFalse(geocoderResponse.getResults().isEmpty());
+
+        final GeocoderResult geocoderResult = geocoderResponse.getResults().iterator().next();
+        assertTrue(geocoderResult.getTypes().contains(GeocoderResultType.STREET_ADDRESS.value()));
     }
 }
