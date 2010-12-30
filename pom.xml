@@ -255,16 +255,17 @@
                 <version>2.1</version>
                 <configuration>
                     <tagBase>https://geocoder-java.googlecode.com/svn/tags</tagBase>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy assembly:assembly</goals>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <descriptor>src/main/resources/assembly-descriptor.xml</descriptor>
-                    <finalName>geocoder-java-${version}</finalName>
-                    <outputDirectory>target/dist</outputDirectory>
-                    <workDirectory>target/assembly/work</workDirectory>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly-descriptor.xml</descriptor>
+                    </descriptors>
                 </configuration>
             </plugin>
         </plugins>
