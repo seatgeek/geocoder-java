@@ -13,14 +13,16 @@ public class GeocoderTest extends Assert {
 
         String res;
 
-        res = geocoder.getURL(new GeocoderRequest("Paris, France", "fr"));
-        assertEquals(res, "http://maps.google.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=fr");
+        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
 
-        res = geocoder.getURL(new GeocoderRequest("Paris, France", "en", "fr"));
-        assertEquals(res, "http://maps.google.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=en&region=fr");
+        assertEquals(res, "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=fr");
 
-        res = geocoder.getURL(new GeocoderRequest("Paris, France", "en", "fr", new LatLngBounds(new LatLng("49.01", "2.51"), new LatLng("48.02", "2.03"))));
-        assertEquals(res, "http://maps.google.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=en&region=fr&bounds=48.02%2C2.03%7C49.01%2C2.51");
+        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").setRegion("fr").getGeocoderRequest());
+        assertEquals(res, "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=en&region=fr");
+
+
+        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Winnetka").setBounds(new LatLngBounds(new LatLng("34.172684", "-118.604794"), new LatLng("34.236144", "-118.500938"))).getGeocoderRequest());
+        assertEquals(res, "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Winnetka&bounds=34.172684%2C-118.604794%7C34.236144%2C-118.500938");
     }
 
     @Test
@@ -29,29 +31,29 @@ public class GeocoderTest extends Assert {
 
         GeocodeResponse geocoderResponse;
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Paris, France", "fr"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Paris, France", "en", "fr"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").setRegion("fr").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Paris, France", "en", "fr", new LatLngBounds(new LatLng("49.01", "2.51"), new LatLng("48.02", "2.03"))));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").setRegion("fr").setBounds(new LatLngBounds(new LatLng("49.01", "2.51"), new LatLng("48.02", "2.03"))).getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Germany, Munich", "en"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Germany, Munich").setLanguage("en").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
         //my home :)
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Київ, вул. Челябінська 17, кв 3", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Київ, вул. Челябінська 17, кв 3").setLanguage("uk").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Бровари, вул. Київська 17", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Бровари, вул. Київська 17").setLanguage("uk").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Дніпропетровськ, ул. Артема 28, кв 35", "uk"));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Дніпропетровськ, ул. Артема 28, кв 35").setLanguage("uk").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequest("Odessa, TX", null, null, null));
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Odessa, TX").getGeocoderRequest());
         assertNotNull(geocoderResponse);
     }
 }

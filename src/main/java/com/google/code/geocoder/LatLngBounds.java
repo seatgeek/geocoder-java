@@ -30,6 +30,22 @@ public class LatLngBounds {
         this.northeast = northeast;
     }
 
+    /**
+     * @return Returns a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
+     */
+    public String toUrlValue() {
+        return toUrlValue(6);
+    }
+
+    /**
+     * @param precision
+     * @return Returns a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, where "lo" corresponds to the southwest corner of the bounding box, while "hi" corresponds to the northeast corner of that box.
+     */
+    public String toUrlValue(int precision) {
+        return getSouthwest().toUrlValue(precision) + "," + getNortheast().toUrlValue(precision);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,6 +68,11 @@ public class LatLngBounds {
 
     @Override
     public String toString() {
-        return northeast.toString() + '|' + southwest.toString();
+        final StringBuilder sb = new StringBuilder();
+        sb.append("LatLngBounds");
+        sb.append("{southwest=").append(southwest);
+        sb.append(", northeast=").append(northeast);
+        sb.append('}');
+        return sb.toString();
     }
 }

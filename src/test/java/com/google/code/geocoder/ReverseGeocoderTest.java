@@ -13,20 +13,22 @@ public class ReverseGeocoderTest extends Assert {
 
         String res;
 
-        res = geocoder.getURL(new GeocoderRequest(new LatLng("40.714224", "-73.961452")));
-        assertEquals(res, "http://maps.google.com/maps/api/geocode/json?sensor=false&latlng=40.714224%2C-73.961452");
+        res = geocoder.getURL(new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).getGeocoderRequest());
+        assertEquals(res, "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&latlng=40.714224%2C-73.961452");
 
-        res = geocoder.getURL(new GeocoderRequest(new LatLng("40.714224", "-73.961452"), "en"));
-        assertEquals(res, "http://maps.google.com/maps/api/geocode/json?sensor=false&latlng=40.714224%2C-73.961452&language=en");
+        res = geocoder.getURL(new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).setLanguage("en").getGeocoderRequest());
+        assertEquals(res, "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&latlng=40.714224%2C-73.961452&language=en");
     }
 
     @Test
     public void testGeocode() throws Exception {
         final Geocoder geocoder = new Geocoder();
+        GeocoderRequest geocoderRequest;
         GeocodeResponse geocoderResponse;
 
         //http://code.google.com/intl/uk/apis/maps/documentation/geocoding/#ReverseGeocoding
-        geocoderResponse = geocoder.geocode(new GeocoderRequest(new LatLng("40.714224", "-73.961452"), "en"));
+        geocoderRequest = new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).setLanguage("en").getGeocoderRequest();
+        geocoderResponse = geocoder.geocode(geocoderRequest);
         assertNotNull(geocoderResponse);
         assertEquals(geocoderResponse.getStatus(), GeocoderStatus.OK);
         assertFalse(geocoderResponse.getResults().isEmpty());

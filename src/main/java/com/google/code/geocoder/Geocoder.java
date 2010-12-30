@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 public class Geocoder {
     private Log log = LogFactory.getLog(Geocoder.class);
 
-    private static final String GEOCODE_REQUEST_URL = "http://maps.google.com/maps/api/geocode/json?sensor=false";
+    private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
     private static final HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
 
     public HttpClientParams getHttpClientParams() {
@@ -68,7 +68,7 @@ public class Geocoder {
         if (StringUtils.isNotBlank(address)) {
             urlString += "&address=" + URLEncoder.encode(address, "UTF-8");
         } else if (location != null) {
-            urlString += "&latlng=" + URLEncoder.encode(location.toString(), "UTF-8");
+            urlString += "&latlng=" + URLEncoder.encode(location.toUrlValue(), "UTF-8");
         } else {
             throw new IllegalArgumentException("Address or location not defined");
         }
@@ -79,7 +79,7 @@ public class Geocoder {
             urlString += "&region=" + URLEncoder.encode(region, "UTF-8");
         }
         if (bounds != null) {
-            urlString += "&bounds=" + URLEncoder.encode(bounds.toString(), "UTF-8");
+            urlString += "&bounds=" + URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8");
         }
 
         if (log.isTraceEnabled()) {

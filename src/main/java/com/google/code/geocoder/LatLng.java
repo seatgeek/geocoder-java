@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
+ * @link http://code.google.com/intl/uk/apis/maps/documentation/javascript/reference.html#LatLng
  */
 public class LatLng {
     private BigDecimal lat, lng;
@@ -11,12 +12,12 @@ public class LatLng {
     public LatLng() {
     }
 
-    public LatLng(BigDecimal lat, BigDecimal lng) {
+    public LatLng(final BigDecimal lat, final BigDecimal lng) {
         this.lat = lat;
         this.lng = lng;
     }
 
-    public LatLng(String lat, String lng) {
+    public LatLng(final String lat, final String lng) {
         this.lat = new BigDecimal(lat);
         this.lng = new BigDecimal(lng);
     }
@@ -35,6 +36,21 @@ public class LatLng {
 
     public void setLng(BigDecimal lng) {
         this.lng = lng;
+    }
+
+    /**
+     * @return Returns a string of the form "lat,lng" for this LatLng. We round the lat/lng values to 6 decimal places by default.
+     */
+    public String toUrlValue() {
+        return toUrlValue(6);
+    }
+
+    /**
+     * @param precision We round the lat/lng values
+     * @return Returns a string of the form "lat,lng" for this LatLng.
+     */
+    public String toUrlValue(int precision) {
+        return lat.setScale(precision, BigDecimal.ROUND_HALF_EVEN).toString() + "," + lng.setScale(precision, BigDecimal.ROUND_HALF_EVEN).toString();
     }
 
     @Override
@@ -57,7 +73,13 @@ public class LatLng {
         return result;
     }
 
+    @Override
     public String toString() {
-        return lat.toString() + "," + lng.toString();
+        final StringBuilder sb = new StringBuilder();
+        sb.append("LatLng");
+        sb.append("{lat=").append(lat);
+        sb.append(", lng=").append(lng);
+        sb.append('}');
+        return sb.toString();
     }
 }

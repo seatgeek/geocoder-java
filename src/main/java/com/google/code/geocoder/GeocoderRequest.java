@@ -14,34 +14,8 @@ public class GeocoderRequest {
     public GeocoderRequest() {
     }
 
-    public GeocoderRequest(String address) {
+    public GeocoderRequest(String address, String language) {
         this.address = address;
-    }
-
-    public GeocoderRequest(final String address, final String language, final String region) {
-        this.address = address;
-        this.language = language;
-        this.region = region;
-    }
-
-    public GeocoderRequest(final String address, final String language) {
-        this.address = address;
-        this.language = language;
-    }
-
-    public GeocoderRequest(final String address, final String language, final String region, final LatLngBounds bounds) {
-        this.address = address;
-        this.bounds = bounds;
-        this.language = language;
-        this.region = region;
-    }
-
-    public GeocoderRequest(final LatLng location) {
-        this.location = location;
-    }
-
-    public GeocoderRequest(final LatLng location, final String language) {
-        this.location = location;
         this.language = language;
     }
 
