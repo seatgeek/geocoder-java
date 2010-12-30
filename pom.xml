@@ -256,7 +256,7 @@
                 <configuration>
                     <tagBase>https://geocoder-java.googlecode.com/svn/tags</tagBase>
                     <releaseProfiles>release</releaseProfiles>
-                    <goals>deploy assembly:assembly</goals>
+                    <goals>deploy assembly:single</goals>
                 </configuration>
             </plugin>
             <plugin>
