@@ -4,16 +4,22 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.LatLng;
 import com.google.code.geocoder.model.LatLngBounds;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class GeocoderTest extends Assert {
+    private static Geocoder geocoder;
+
+    @BeforeClass
+    public static void setUp() {
+        geocoder = new Geocoder();
+    }
+
     @Test
     public void testGeocod() throws Exception {
-        final Geocoder geocoder = new Geocoder();
-
         String res;
 
         res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
@@ -30,8 +36,6 @@ public class GeocoderTest extends Assert {
 
     @Test
     public void testGeocode() throws Exception {
-        final Geocoder geocoder = new Geocoder();
-
         GeocodeResponse geocoderResponse;
 
         geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());

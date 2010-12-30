@@ -12,11 +12,15 @@ import java.io.InputStream;
 
 @Ignore
 public class MassGeocoderTest extends Assert {
+    private static Geocoder geocoder;
     private static InputStream file;
     private static HSSFWorkbook wb;
 
+
     @BeforeClass
     public static void beforeClass() {
+        geocoder = new Geocoder();
+
         try {
             file = new FileInputStream("src/test/resources/ATM_partners.xls ");
             wb = new HSSFWorkbook(file);
@@ -60,7 +64,6 @@ public class MassGeocoderTest extends Assert {
 
     @Test
     public void testGeocode() throws Exception {
-        final Geocoder geocoder = new Geocoder();
         GeocodeResponse geocoderResponse;
         final HSSFSheet sheet = wb.getSheetAt(0);
         for (int i = sheet.getLeftCol(); i < Math.min(2000, sheet.getLastRowNum()); i++) {

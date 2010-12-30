@@ -2,16 +2,22 @@ package com.google.code.geocoder;
 
 import com.google.code.geocoder.model.*;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class ReverseGeocoderTest extends Assert {
+    private static Geocoder geocoder;
+
+    @BeforeClass
+    public static void setUp() {
+        geocoder = new Geocoder();
+    }
+
     @Test
     public void testGeocod() throws Exception {
-        final Geocoder geocoder = new Geocoder();
-
         String res;
 
         res = geocoder.getURL(new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).getGeocoderRequest());
@@ -23,7 +29,6 @@ public class ReverseGeocoderTest extends Assert {
 
     @Test
     public void testGeocode() throws Exception {
-        final Geocoder geocoder = new Geocoder();
         GeocoderRequest geocoderRequest;
         GeocodeResponse geocoderResponse;
 
