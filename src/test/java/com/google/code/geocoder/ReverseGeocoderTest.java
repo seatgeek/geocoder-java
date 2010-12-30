@@ -17,7 +17,7 @@ public class ReverseGeocoderTest extends Assert {
     }
 
     @Test
-    public void testGeocod() throws Exception {
+    public void testURL() throws Exception {
         String res;
 
         res = geocoder.getURL(new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).getGeocoderRequest());

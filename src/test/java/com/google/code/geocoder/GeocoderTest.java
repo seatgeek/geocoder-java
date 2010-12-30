@@ -19,7 +19,7 @@ public class GeocoderTest extends Assert {
     }
 
     @Test
-    public void testGeocod() throws Exception {
+    public void testURL() throws Exception {
         String res;
 
         res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());

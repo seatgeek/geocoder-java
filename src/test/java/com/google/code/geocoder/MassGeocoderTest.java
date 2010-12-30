@@ -85,7 +85,5 @@ public class MassGeocoderTest extends Assert {
             System.out.println("geocoderResponse = " + geocoderResponse);
             Thread.sleep(1000);
         }
-
-
     }
 }

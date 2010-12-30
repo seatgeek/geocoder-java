@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,12 +28,11 @@ public class Geocoder {
     private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
     private static final HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
 
-    public HttpClientParams getHttpClientParams() {
-        return HTTP_CLIENT.getParams();
+    public Geocoder() {
     }
 
-    public void setHttpClientParams(final HttpClientParams httpClientParams) {
-        HTTP_CLIENT.setParams(httpClientParams);
+    public HttpClient getHttpClient() {
+        return HTTP_CLIENT;
     }
 
     public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) {
