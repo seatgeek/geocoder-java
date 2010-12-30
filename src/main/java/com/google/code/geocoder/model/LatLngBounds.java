@@ -1,4 +1,4 @@
-package com.google.code.geocoder;
+package com.google.code.geocoder.model;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>

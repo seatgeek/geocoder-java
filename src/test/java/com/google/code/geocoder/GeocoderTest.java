@@ -1,5 +1,8 @@
 package com.google.code.geocoder;
 
+import com.google.code.geocoder.model.GeocodeResponse;
+import com.google.code.geocoder.model.LatLng;
+import com.google.code.geocoder.model.LatLngBounds;
 import org.junit.Assert;
 import org.junit.Test;
 

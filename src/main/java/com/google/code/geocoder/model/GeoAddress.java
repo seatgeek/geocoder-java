@@ -1,12 +1,5 @@
-package com.google.code.geocoder;
+package com.google.code.geocoder.model;
 
-/**
- * Created by IntelliJ IDEA.
- * User: panchmp
- * Date: 9 серп 2010
- * Time: 22:51:36
- * To change this template use File | Settings | File Templates.
- */
 public class GeoAddress {
     protected GeocoderLocationType locationType;
     protected String formattedAddress;

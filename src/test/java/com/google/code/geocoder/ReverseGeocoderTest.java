@@ -1,5 +1,6 @@
 package com.google.code.geocoder;
 
+import com.google.code.geocoder.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 

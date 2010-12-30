@@ -1,4 +1,4 @@
-package com.google.code.geocoder;
+package com.google.code.geocoder.model;
 
 
 /**
