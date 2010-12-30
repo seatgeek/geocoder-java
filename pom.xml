@@ -1,65 +1,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- The Basics -->
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
-    <packaging>jar</packaging>
     <version>0.5-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <name>Geocoder</name>
     <description>Java API for Google geocoder v3</description>
     <url>http://code.google.com/p/geocoder-java/</url>
 
-    <distributionManagement>
-        <repository>
-            <id>local.repo</id>
-            <name>file repository to svn</name>
-            <url>file://${basedir}/../mavenrepo</url>
-        </repository>
-    </distributionManagement>
-    <repositories>
-        <repository>
-            <id>geocoder-java</id>
-            <url>https://geocoder-java.googlecode.com/svn/mavenrepo/</url>
-        </repository>
-        <repository>
-            <id>jboss</id>
-            <name>JBoss Repository</name>
-            <url>http://repository.jboss.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>gson</id>
-            <url>http://google-gson.googlecode.com/svn/mavenrepo</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-    <!--
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    -->
-    <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.codegoogle.com/svn/trunk/</url>
-    </scm>
-    <issueManagement>
-        <system>Google Code Issue Tracking</system>
-        <url>https://code.google.com/p/geocoder-java/issues/list</url>
-    </issueManagement>
+    <dependencies>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
 
-    <!--
-    mvn versions:display-plugin-updates
-    mvn versions:display-dependency-updates
-    -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+        </dependency>
+    </dependencies>
+    <!--<parent>...</parent>-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -95,36 +72,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-        </dependency>
-    </dependencies>
-
+    <!--<modules>...</modules>-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!--
+    mvn versions:display-plugin-updates
+    mvn versions:display-dependency-updates
+    -->
+    <!-- Build Settings -->
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
@@ -270,10 +227,74 @@
             </plugin>
         </plugins>
     </build>
+    <!--<reporting>...</reporting>-->
+
+    <!-- More Project Information -->
+    <!--<name>...</name>-->
+    <!--<description>...</description>-->
+    <!--<url>...</url>-->
+    <!--<inceptionYear>...</inceptionYear>-->
+    <!--
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    -->
+    <!--<organization>...</organization>-->
     <developers>
         <developer>
             <name>Michael Panchenko</name>
             <email>panchmp@gmail.com</email>
         </developer>
     </developers>
+    <!--<contributors>...</contributors>-->
+
+    <!-- Environment Settings -->
+    <issueManagement>
+        <system>Google Code Issue Tracking</system>
+        <url>https://code.google.com/p/geocoder-java/issues/list</url>
+    </issueManagement>
+    <!--<ciManagement>...</ciManagement>-->
+    <!--<mailingLists>...</mailingLists>-->
+    <scm>
+        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
+        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
+        <url>https://geocoder-java.codegoogle.com/svn/trunk/</url>
+    </scm>
+    <!--<prerequisites>...</prerequisites>-->
+    <repositories>
+        <repository>
+            <id>jboss</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>gson</id>
+            <url>http://google-gson.googlecode.com/svn/mavenrepo</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <!--<pluginRepositories>...</pluginRepositories>-->
+    <distributionManagement>
+        <repository>
+            <id>geocoder.googlecode.releases</id>
+            <name>geocoder.googlecode.releases</name>
+            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo</url>
+        </repository>
+        <snapshotRepository>
+            <id>geocoder.googlecode.snapshots</id>
+            <name>geocoder.googlecode.snapshots</name>
+            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <!--<profiles>...</profiles>-->
+
 </project>
