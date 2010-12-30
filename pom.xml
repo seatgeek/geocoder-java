@@ -4,7 +4,7 @@
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
     <packaging>jar</packaging>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
     <name>Geocoder</name>
     <description>Java API for Google geocoder v3</description>
     <url>http://code.google.com/p/geocoder-java/</url>
@@ -47,9 +47,9 @@
     </licenses>
     -->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.codegoogle.com/svn/trunk/</url>
+        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.3</connection>
+        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.3</developerConnection>
+        <url>https://geocoder-java.codegoogle.com/svn/tags/geocoder-java-0.3</url>
     </scm>
     <issueManagement>
         <system>Google Code Issue Tracking</system>
