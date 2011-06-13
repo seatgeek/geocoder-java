@@ -1,10 +1,14 @@
 package com.google.code.geocoder.model;
 
 
+import java.io.Serializable;
+
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocoderRequest {
+public class GeocoderRequest implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String address;         //Address. Optional.
     private String language;        //Preferred language for results. Optional.
     private String region;          //Country code top-level domain within which to search. Optional.

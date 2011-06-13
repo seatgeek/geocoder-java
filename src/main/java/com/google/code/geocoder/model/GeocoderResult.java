@@ -1,16 +1,19 @@
 package com.google.code.geocoder.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocoderResult {
-    protected List<String> types;
-    protected String formattedAddress;
-    protected List<GeocoderAddressComponent> addressComponents;
-    protected GeocoderGeometry geometry;
-    protected boolean partialMatch;
+public class GeocoderResult implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private List<String> types;
+    private String formattedAddress;
+    private List<GeocoderAddressComponent> addressComponents;
+    private GeocoderGeometry geometry;
+    private boolean partialMatch;
 
     public List<String> getTypes() {
         return types;
