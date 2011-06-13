@@ -3,6 +3,7 @@ package com.google.code.geocoder;
 import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.LatLng;
 import com.google.code.geocoder.model.LatLngBounds;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,7 +17,12 @@ public class ProxyGeocoderTest extends Assert {
     @BeforeClass
     public static void setUp() {
         geocoder = new Geocoder();
-        geocoder.getHttpClient().getHostConfiguration().setProxy("220.231.93.41", 80);
+        geocoder.getHttpClient().getHostConfiguration().setProxy("41.190.16.17", 8080);
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        geocoder.getHttpClient().getHostConfiguration().setProxyHost(null);
     }
 
     @Test
