@@ -292,12 +292,12 @@
         <repository>
             <id>geocoder.googlecode.releases</id>
             <name>geocoder.googlecode.releases</name>
-            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo</url>
+            <url>https://geocoder-java.googlecode.com/svn/mavenrepo</url>
         </repository>
         <snapshotRepository>
             <id>geocoder.googlecode.snapshots</id>
             <name>geocoder.googlecode.snapshots</name>
-            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
+            <url>https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
     <!--<profiles>...</profiles>-->
