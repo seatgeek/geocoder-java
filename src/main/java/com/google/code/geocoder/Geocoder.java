@@ -27,17 +27,17 @@ public class Geocoder {
     private Log log = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
-    private static HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
+    private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
 
     public Geocoder() {
     }
 
     public static synchronized void setConnectionManager(HttpConnectionManager manager) {
-        HTTP_CLIENT = new HttpClient(manager);
+        httpClient = new HttpClient(manager);
     }
 
     public synchronized HttpClient getHttpClient() {
-        return HTTP_CLIENT;
+        return httpClient;
     }
 
     public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) {
@@ -48,7 +48,7 @@ public class Geocoder {
 
             final GetMethod getMethod = new GetMethod(urlString);
             try {
-                HTTP_CLIENT.executeMethod(getMethod);
+                httpClient.executeMethod(getMethod);
                 final Reader reader = new InputStreamReader(getMethod.getResponseBodyAsStream(), getMethod.getResponseCharSet());
 
                 return gson.fromJson(reader, GeocodeResponse.class);
