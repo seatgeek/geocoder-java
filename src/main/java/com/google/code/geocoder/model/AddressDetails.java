@@ -10,7 +10,7 @@ public class AddressDetails implements Serializable {
     private String locality;
     private String subLocality;
     private String route;
-    private String street_address;
+    private String streetAddress;
     private String subPremise;
 
     public AddressDetails() {
@@ -56,12 +56,12 @@ public class AddressDetails implements Serializable {
         this.route = route;
     }
 
-    public String getStreet_address() {
-        return street_address;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setStreet_address(String street_address) {
-        this.street_address = street_address;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
     public String getSubPremise() {
@@ -84,7 +84,7 @@ public class AddressDetails implements Serializable {
         if (country != null ? !country.equals(that.country) : that.country != null) return false;
         if (locality != null ? !locality.equals(that.locality) : that.locality != null) return false;
         if (route != null ? !route.equals(that.route) : that.route != null) return false;
-        if (street_address != null ? !street_address.equals(that.street_address) : that.street_address != null)
+        if (streetAddress != null ? !streetAddress.equals(that.streetAddress) : that.streetAddress != null)
             return false;
         if (subLocality != null ? !subLocality.equals(that.subLocality) : that.subLocality != null) return false;
         if (subPremise != null ? !subPremise.equals(that.subPremise) : that.subPremise != null) return false;
@@ -99,7 +99,7 @@ public class AddressDetails implements Serializable {
         result = 31 * result + (locality != null ? locality.hashCode() : 0);
         result = 31 * result + (subLocality != null ? subLocality.hashCode() : 0);
         result = 31 * result + (route != null ? route.hashCode() : 0);
-        result = 31 * result + (street_address != null ? street_address.hashCode() : 0);
+        result = 31 * result + (streetAddress != null ? streetAddress.hashCode() : 0);
         result = 31 * result + (subPremise != null ? subPremise.hashCode() : 0);
         return result;
     }
@@ -113,7 +113,7 @@ public class AddressDetails implements Serializable {
         sb.append(", locality='").append(locality).append('\'');
         sb.append(", subLocality='").append(subLocality).append('\'');
         sb.append(", route='").append(route).append('\'');
-        sb.append(", street_address='").append(street_address).append('\'');
+        sb.append(", street_address='").append(streetAddress).append('\'');
         sb.append(", subPremise='").append(subPremise).append('\'');
         sb.append('}');
         return sb.toString();
