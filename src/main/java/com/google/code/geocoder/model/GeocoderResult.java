@@ -10,6 +10,7 @@ public class GeocoderResult {
     protected String formattedAddress;
     protected List<GeocoderAddressComponent> addressComponents;
     protected GeocoderGeometry geometry;
+    protected boolean partialMatch;
 
     public List<String> getTypes() {
         return types;
@@ -43,6 +44,14 @@ public class GeocoderResult {
         this.geometry = geometry;
     }
 
+    public boolean isPartialMatch() {
+        return partialMatch;
+    }
+
+    public void setPartialMatch(boolean partialMatch) {
+        this.partialMatch = partialMatch;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +59,7 @@ public class GeocoderResult {
 
         GeocoderResult that = (GeocoderResult) o;
 
+        if (partialMatch != that.partialMatch) return false;
         if (addressComponents != null ? !addressComponents.equals(that.addressComponents) : that.addressComponents != null)
             return false;
         if (formattedAddress != null ? !formattedAddress.equals(that.formattedAddress) : that.formattedAddress != null)
@@ -66,6 +76,7 @@ public class GeocoderResult {
         result = 31 * result + (formattedAddress != null ? formattedAddress.hashCode() : 0);
         result = 31 * result + (addressComponents != null ? addressComponents.hashCode() : 0);
         result = 31 * result + (geometry != null ? geometry.hashCode() : 0);
+        result = 31 * result + (partialMatch ? 1 : 0);
         return result;
     }
 
@@ -77,6 +88,7 @@ public class GeocoderResult {
         sb.append(", formattedAddress='").append(formattedAddress).append('\'');
         sb.append(", addressComponents=").append(addressComponents);
         sb.append(", geometry=").append(geometry);
+        sb.append(", partialMatch=").append(partialMatch);
         sb.append('}');
         return sb.toString();
     }
