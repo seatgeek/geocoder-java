@@ -8,6 +8,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpConnectionManager;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
@@ -26,12 +27,16 @@ public class Geocoder {
     private Log log = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
-    private static final HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
+    private static HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
 
     public Geocoder() {
     }
 
-    public HttpClient getHttpClient() {
+    public static synchronized void setConnectionManager(HttpConnectionManager manager) {
+        HTTP_CLIENT = new HttpClient(manager);
+    }
+
+    public synchronized HttpClient getHttpClient() {
         return HTTP_CLIENT;
     }
 
