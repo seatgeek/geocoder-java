@@ -222,6 +222,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
     </build>
     <!--<reporting>...</reporting>-->
 
@@ -292,12 +299,12 @@
         <repository>
             <id>geocoder.googlecode.releases</id>
             <name>geocoder.googlecode.releases</name>
-            <url>https://geocoder-java.googlecode.com/svn/mavenrepo</url>
+            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo</url>
         </repository>
         <snapshotRepository>
             <id>geocoder.googlecode.snapshots</id>
             <name>geocoder.googlecode.snapshots</name>
-            <url>https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
+            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
     <!--<profiles>...</profiles>-->
