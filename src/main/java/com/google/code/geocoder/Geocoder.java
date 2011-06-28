@@ -56,7 +56,7 @@ public class Geocoder {
                 getMethod.releaseConnection();
             }
         } catch (Exception e) {
-            log.error(e);
+            log.error(e.getMessage(), e);
             return null;
         }
     }
