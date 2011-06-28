@@ -71,27 +71,27 @@ public class Geocoder {
         final String region = geocoderRequest.getRegion();
         final LatLng location = geocoderRequest.getLocation();
 
-        String urlString = GEOCODE_REQUEST_URL;
+        StringBuilder url = new StringBuilder(GEOCODE_REQUEST_URL);
         if (StringUtils.isNotBlank(address)) {
-            urlString += "&address=" + URLEncoder.encode(address, "UTF-8");
+            url.append("&address=").append(URLEncoder.encode(address, "UTF-8"));
         } else if (location != null) {
-            urlString += "&latlng=" + URLEncoder.encode(location.toUrlValue(), "UTF-8");
+            url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), "UTF-8"));
         } else {
-            throw new IllegalArgumentException("Address or location not defined");
+            throw new IllegalArgumentException("Address or location should be defined");
         }
         if (StringUtils.isNotBlank(language)) {
-            urlString += "&language=" + URLEncoder.encode(language, "UTF-8");
+            url.append("&language=").append(URLEncoder.encode(language, "UTF-8"));
         }
         if (StringUtils.isNotBlank(region)) {
-            urlString += "&region=" + URLEncoder.encode(region, "UTF-8");
+            url.append("&region=").append(URLEncoder.encode(region, "UTF-8"));
         }
         if (bounds != null) {
-            urlString += "&bounds=" + URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8");
+            url.append("&bounds=").append(URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8"));
         }
 
         if (log.isTraceEnabled()) {
-            log.trace("url: " + urlString);
+            log.trace("url: " + url);
         }
-        return urlString;
+        return url.toString();
     }
 }
