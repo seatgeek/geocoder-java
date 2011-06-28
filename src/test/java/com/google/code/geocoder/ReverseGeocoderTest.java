@@ -1,20 +1,12 @@
 package com.google.code.geocoder;
 
 import com.google.code.geocoder.model.*;
-import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class ReverseGeocoderTest extends Assert {
-    private static Geocoder geocoder;
-
-    @BeforeClass
-    public static void setUp() {
-        geocoder = new Geocoder();
-    }
+public class ReverseGeocoderTest extends BaseGeocoderTest {
 
     @Test
     public void testURL() throws Exception {

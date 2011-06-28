@@ -3,21 +3,12 @@ package com.google.code.geocoder;
 import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.LatLng;
 import com.google.code.geocoder.model.LatLngBounds;
-import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocoderTest extends Assert {
-    private static Geocoder geocoder;
-
-    @BeforeClass
-    public static void setUp() {
-        geocoder = new Geocoder();
-    }
-
+public class GeocoderTest extends BaseGeocoderTest {
     @Test
     public void testURL() throws Exception {
         String res;
@@ -50,14 +41,13 @@ public class GeocoderTest extends Assert {
         geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Germany, Munich").setLanguage("en").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        //my home :)
-        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Київ, вул. Челябінська 17, кв 3").setLanguage("uk").getGeocoderRequest());
-        assertNotNull(geocoderResponse);
-
         geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Бровари, вул. Київська 17").setLanguage("uk").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
-        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Дніпропетровськ, ул. Артема 28, кв 35").setLanguage("uk").getGeocoderRequest());
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Дніпропетровськ, ул. Артема 28").setLanguage("uk").getGeocoderRequest());
+        assertNotNull(geocoderResponse);
+
+        geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("中国上海安化路").setLanguage("zn").getGeocoderRequest());
         assertNotNull(geocoderResponse);
 
         geocoderResponse = geocoder.geocode(new GeocoderRequestBuilder().setAddress("Odessa, TX").getGeocoderRequest());
