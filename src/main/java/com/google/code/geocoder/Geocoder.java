@@ -24,7 +24,7 @@ import java.net.URLEncoder;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private Log log = LogFactory.getLog(Geocoder.class);
+    private static final Log log = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
     private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
