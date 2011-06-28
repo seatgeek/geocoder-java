@@ -8,7 +8,7 @@ import com.google.code.geocoder.model.LatLngBounds;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class GeocoderRequestBuilder {
-    final private GeocoderRequest geocoderRequest = new GeocoderRequest();
+    private final GeocoderRequest geocoderRequest = new GeocoderRequest();
 
     public GeocoderRequestBuilder setAddress(String address) {
         geocoderRequest.setAddress(address);
