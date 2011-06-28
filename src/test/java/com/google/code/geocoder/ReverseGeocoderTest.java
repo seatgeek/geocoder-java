@@ -36,7 +36,7 @@ public class ReverseGeocoderTest extends Assert {
         geocoderRequest = new GeocoderRequestBuilder().setLocation(new LatLng("40.714224", "-73.961452")).setLanguage("en").getGeocoderRequest();
         geocoderResponse = geocoder.geocode(geocoderRequest);
         assertNotNull(geocoderResponse);
-        assertEquals(geocoderResponse.getStatus(), GeocoderStatus.OK);
+        assertEquals(GeocoderStatus.OK, geocoderResponse.getStatus());
         assertFalse(geocoderResponse.getResults().isEmpty());
 
         final GeocoderResult geocoderResult = geocoderResponse.getResults().iterator().next();
