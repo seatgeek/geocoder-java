@@ -9,6 +9,7 @@ import java.math.BigDecimal;
  */
 public class LatLng implements Serializable {
     private static final long serialVersionUID = 1L;
+    public static final int DEFAULT_PRECISION = 6;
 
     private BigDecimal lat, lng;
 
@@ -45,7 +46,7 @@ public class LatLng implements Serializable {
      * @return Returns a string of the form "lat,lng" for this LatLng. We round the lat/lng values to 6 decimal places by default.
      */
     public String toUrlValue() {
-        return toUrlValue(6);
+        return toUrlValue(DEFAULT_PRECISION);
     }
 
     /**
