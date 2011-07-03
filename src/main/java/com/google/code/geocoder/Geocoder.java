@@ -29,7 +29,7 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private static final Log log = LogFactory.getLog(Geocoder.class);
+    private static Log log = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
