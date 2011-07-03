@@ -174,10 +174,10 @@ public class Geocoder {
             final SecretKeySpec sha1Key = new SecretKeySpec(key, "HmacSHA1");
 
             // Get an HMAC-SHA1 Mac instance and initialize it with the HMAC-SHA1 key
-            final Mac mac = Mac.getInstance("HmacSHA1");
-            mac.init(sha1Key);
+            final Mac result = Mac.getInstance("HmacSHA1");
+            result.init(sha1Key);
 
-            return mac;
+            return result;
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException(e);
         }
