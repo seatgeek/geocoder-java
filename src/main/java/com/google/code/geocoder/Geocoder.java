@@ -140,7 +140,7 @@ public class Geocoder {
     }
 
     protected void addClientIdAndSignURL(StringBuilder url) {
-        url.append("&clientId=").append(clientId);
+        url.append("&client=").append(clientId);
 
         if (log.isTraceEnabled()) {
             log.trace("URL query to Sign: " + url);
