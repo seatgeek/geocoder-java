@@ -160,9 +160,8 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -174,7 +173,6 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -188,7 +186,20 @@
                     <show>public</show>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
@@ -211,7 +222,6 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <tagBase>https://geocoder-java.googlecode.com/svn/tags</tagBase>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy assembly:single</goals>
                 </configuration>
@@ -226,13 +236,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav-jackrabbit</artifactId>
-                <version>1.0-beta-7</version>
-            </extension>
-        </extensions>
     </build>
     <!--<reporting>...</reporting>-->
 
@@ -241,7 +244,6 @@
     <!--<description>...</description>-->
     <!--<url>...</url>-->
     <!--<inceptionYear>...</inceptionYear>-->
-    <!--
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -249,7 +251,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    -->
     <!--<organization>...</organization>-->
     <developers>
         <developer>
@@ -299,17 +300,18 @@
         </repository>
     </repositories>
     <!--<pluginRepositories>...</pluginRepositories>-->
+
     <distributionManagement>
-        <repository>
-            <id>geocoder.googlecode.releases</id>
-            <name>geocoder.googlecode.releases</name>
-            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo</url>
-        </repository>
         <snapshotRepository>
-            <id>geocoder.googlecode.snapshots</id>
-            <name>geocoder.googlecode.snapshots</name>
-            <url>dav:https://geocoder-java.googlecode.com/svn/mavenrepo-snapshot</url>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
     <!--<profiles>...</profiles>-->
 
