@@ -1,6 +1,5 @@
 package com.google.code.geocoder;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 /**
@@ -9,12 +8,9 @@ import org.junit.BeforeClass;
 public class ProxyGeocoderTest extends GeocoderTest {
     @BeforeClass
     public static void setUp() {
-        geocoder.getHttpClient().getHostConfiguration().setProxy("41.190.16.17", 8080);
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        geocoder.getHttpClient().getHostConfiguration().setProxyHost(null);
+        final AdvancedGeoCoder advancedGeoCoder = new AdvancedGeoCoder();
+        advancedGeoCoder.getHttpClient().getHostConfiguration().setProxy("41.190.16.17", 8080);
+        geocoder = advancedGeoCoder;
     }
 }
 

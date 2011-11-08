@@ -8,19 +8,17 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpConnectionManager;
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
-import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -34,8 +32,6 @@ public class Geocoder {
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_QUERY_BASIC = "/maps/api/geocode/json?sensor=false";
-
-    private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
 
     private final String clientId;
     private final Mac mac;
@@ -57,14 +53,6 @@ public class Geocoder {
         this.mac = getMAC(clientKey);
     }
 
-    @Deprecated
-    public static synchronized void setConnectionManager(HttpConnectionManager manager) {
-        httpClient = new HttpClient(manager);
-    }
-
-    public synchronized HttpClient getHttpClient() {
-        return httpClient;
-    }
 
     public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) {
         try {
@@ -72,18 +60,20 @@ public class Geocoder {
 
             final String urlString = getURL(geocoderRequest);
 
-            final GetMethod getMethod = new GetMethod(urlString);
-            try {
-                httpClient.executeMethod(getMethod);
-                final Reader reader = new InputStreamReader(getMethod.getResponseBodyAsStream(), getMethod.getResponseCharSet());
-
-                return gson.fromJson(reader, GeocodeResponse.class);
-            } finally {
-                getMethod.releaseConnection();
-            }
+            return request(gson, urlString);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
+        URL url = new URL(urlString);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        try {
+            return gson.fromJson(reader, GeocodeResponse.class);
+        } finally {
+            reader.close();
         }
     }
 
@@ -164,14 +154,12 @@ public class Geocoder {
 
     protected Mac getMAC(String clientKey) throws InvalidKeyException {
         try {
-            byte[] key = Base64.decodeBase64(
-                    clientKey.replace('-', '+')
-                            .replace('_', '/').getBytes()
-            );
+            byte[] key = clientKey.replace('-', '+').replace('_', '/').getBytes();
 
+            byte[] decodedKey = Base64.decodeBase64(key);
 
             // Get an HMAC-SHA1 signing key from the raw key bytes
-            final SecretKeySpec sha1Key = new SecretKeySpec(key, "HmacSHA1");
+            final SecretKeySpec sha1Key = new SecretKeySpec(decodedKey, "HmacSHA1");
 
             // Get an HMAC-SHA1 Mac instance and initialize it with the HMAC-SHA1 key
             final Mac result = Mac.getInstance("HmacSHA1");
