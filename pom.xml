@@ -5,7 +5,7 @@
     <!-- The Basics -->
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
-    <version>0.9-SNAPSHOT</version>
+    <version>0.9</version>
     <packaging>jar</packaging>
 
     <name>Geocoder</name>
@@ -268,9 +268,9 @@
     <!--<ciManagement>...</ciManagement>-->
     <!--<mailingLists>...</mailingLists>-->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.googlecode.com/svn/trunk/</url>
+        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.9</connection>
+        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.9</developerConnection>
+        <url>https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.9</url>
     </scm>
     <!--<prerequisites>...</prerequisites>-->
     <repositories>
