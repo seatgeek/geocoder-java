@@ -269,9 +269,9 @@
     <!--<ciManagement>...</ciManagement>-->
     <!--<mailingLists>...</mailingLists>-->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.googlecode.com/svn/trunk/</url>
+        <connection>scm:svn:http://geocoder-java.googlecode.com/svn/trunk/</connection>
+        <developerConnection>scm:svn:http://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
+        <url>http://geocoder-java.googlecode.com/svn/trunk/</url>
     </scm>
     <!--<prerequisites>...</prerequisites>-->
     <repositories>
