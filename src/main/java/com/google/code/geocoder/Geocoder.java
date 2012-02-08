@@ -14,10 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
@@ -69,7 +66,7 @@ public class Geocoder {
 
     protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
         URL url = new URL(urlString);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        Reader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
         try {
             return gson.fromJson(reader, GeocodeResponse.class);
         } finally {
@@ -129,8 +126,8 @@ public class Geocoder {
         return url;
     }
 
-    protected void addClientIdAndSignURL(StringBuilder url) {
-        url.append("&client=").append(clientId);
+    protected void addClientIdAndSignURL(StringBuilder url) throws UnsupportedEncodingException {
+        url.append("&client=").append(URLEncoder.encode(clientId, "UTF-8"));
 
         if (log.isTraceEnabled()) {
             log.trace("URL query to Sign: " + url);
