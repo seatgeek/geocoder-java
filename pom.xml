@@ -107,7 +107,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.11</version>
+                <version>2.12</version>
                 <!--
                 <configuration>
                     <parallel>classes</parallel>
@@ -118,7 +118,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -130,25 +130,11 @@
                 <configuration>
                     <archive>
                         <index>true</index>
-                        <!--
                         <manifest>
                             <addClasspath>true</addClasspath>
                         </manifest>
-                        -->
                         <manifestEntries>
                             <url>${project.url}</url>
-                            <!--
-                            <Bundle-RequiredExecutionEnvironment>J2SE-1.6</Bundle-RequiredExecutionEnvironment>
-                            <Export-Package><![CDATA[com.google.gson;version=1.4, com.google.gson.annotations;version=1.4, com.google.gson.reflect;version=1.4]]></Export-Package>
-                            <Bundle-Version>1.4</Bundle-Version>
-                            <Bundle-ContactAddress>http://code.google.com/p/google-gson/</Bundle-ContactAddress>
-                            <Bundle-Vendor>Google Gson Project</Bundle-Vendor>
-                            <Bundle-Name>${project.name}</Bundle-Name>
-                            <Bundle-Description>${project.description}</Bundle-Description>
-                            <Bundle-ClassPath>.</Bundle-ClassPath>
-                            <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
-                            <Bundle-SymbolicName>com.google.gson</Bundle-SymbolicName>
-                            -->
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -169,7 +155,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8</version>
+                <version>2.8.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -205,13 +191,11 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.3.1</version>
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.0-beta-3</version>
+                <version>3.0</version>
             </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
@@ -228,7 +212,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2.2</version>
+                <version>2.3</version>
                 <configuration>
                     <descriptors>
                         <descriptor>src/main/assembly/assembly-descriptor.xml</descriptor>
