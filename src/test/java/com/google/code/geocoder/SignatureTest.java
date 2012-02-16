@@ -15,7 +15,7 @@ public class SignatureTest extends Geocoder {
     }
 
     @Test
-    public void testSignature() {
+    public void testSignature() throws Exception {
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-000"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-001"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-002"));
