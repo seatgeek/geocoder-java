@@ -9,6 +9,17 @@ import org.junit.Test;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class GeocoderTest extends BaseGeocoderTest {
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationClientIdFail() throws Exception {
+        new Geocoder("someClientId", "");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationClientKeyFail() throws Exception {
+        new Geocoder("", "someClientKey");
+    }
+
     @Test
     public void testURL() throws Exception {
         String res;
