@@ -2,6 +2,7 @@ package com.google.code.geocoder;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
@@ -15,5 +16,9 @@ public class BaseGeocoderTest extends Assert {
     }
 
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationFail() throws Exception {
+        Geocoder result = new Geocoder(null, "");
+    }
 }
 
