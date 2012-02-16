@@ -17,8 +17,13 @@ public class BaseGeocoderTest extends Assert {
 
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreationFail() throws Exception {
-        Geocoder result = new Geocoder(null, "");
+    public void testCreationClientIdFail() throws Exception {
+        new Geocoder("someClientId", "");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationClientKeyFail() throws Exception {
+        new Geocoder("", "someClientKey");
     }
 }
 
