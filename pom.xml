@@ -77,11 +77,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <sonar.verbose>true</sonar.verbose>
-
-        <sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.jacoco.reportPath>${project.build.directory}/reports/jacoco.exec</sonar.jacoco.reportPath>
-        <sonar.jacoco.itReportPath>${project.build.directory}/reports/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
 
     <!--
