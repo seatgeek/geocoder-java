@@ -77,6 +77,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.verbose>true</sonar.verbose>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.jacoco.reportPath>${user.dir}/target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 
     <!--
@@ -140,6 +141,22 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.5.7.201204190339</version>
+                <configuration>
+                    <destFile>${session.executionRootDirectory}/target/jacoco.exec</destFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
