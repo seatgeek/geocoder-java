@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private static Log log = LogFactory.getLog(Geocoder.class);
+    private static final Log log = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
@@ -149,7 +149,7 @@ public class Geocoder {
         url.append("&signature=").append(signature);
     }
 
-    protected Mac getMAC(String clientKey) throws InvalidKeyException {
+    protected static Mac getMAC(String clientKey) throws InvalidKeyException {
         try {
             byte[] key = clientKey.replace('-', '+').replace('_', '/').getBytes();
 
