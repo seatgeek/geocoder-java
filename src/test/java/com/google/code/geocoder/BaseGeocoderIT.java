@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public abstract class BaseGeocoderTest extends Assert {
+public abstract class BaseGeocoderIT extends Assert {
     protected static Geocoder geocoder;
 
     @BeforeClass

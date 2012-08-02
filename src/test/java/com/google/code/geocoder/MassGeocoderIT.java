@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 @Ignore
-public class MassGeocoderTest extends BaseGeocoderTest {
+public class MassGeocoderIT extends BaseGeocoderIT {
 
     @Test
     public void testGeocode() throws Exception {

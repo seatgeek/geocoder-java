@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocoderTest extends BaseGeocoderTest {
+public class GeocoderIT extends BaseGeocoderIT {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreationClientIdFail() throws Exception {

@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class ProxyGeocoderTest extends GeocoderTest {
+public class ProxyGeocoderIT extends GeocoderIT {
     @BeforeClass
     public static void setUp() {
         final AdvancedGeoCoder advancedGeoCoder = new AdvancedGeoCoder();

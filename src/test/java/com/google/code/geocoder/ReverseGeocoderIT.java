@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class ReverseGeocoderTest extends BaseGeocoderTest {
+public class ReverseGeocoderIT extends BaseGeocoderIT {
 
     @Test
     public void testURL() throws Exception {
