@@ -9,7 +9,7 @@ public class ProxyGeocoderIT extends GeocoderIT {
     @BeforeClass
     public static void setUp() {
         final AdvancedGeoCoder advancedGeoCoder = new AdvancedGeoCoder();
-        advancedGeoCoder.getHttpClient().getHostConfiguration().setProxy("41.190.16.17", 8080);
+        advancedGeoCoder.getHttpClient().getHostConfiguration().setProxy("210.176.171.236", 8080);
         geocoder = advancedGeoCoder;
     }
 }
