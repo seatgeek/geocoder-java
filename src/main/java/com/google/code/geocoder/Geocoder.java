@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private static final Log log = LogFactory.getLog(Geocoder.class);
+    private static final Log logger = LogFactory.getLog(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
@@ -59,7 +59,7 @@ public class Geocoder {
 
             return request(gson, urlString);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
             return null;
         }
     }
@@ -75,8 +75,8 @@ public class Geocoder {
     }
 
     protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
-        if (log.isTraceEnabled()) {
-            log.trace(geocoderRequest);
+        if (logger.isTraceEnabled()) {
+            logger.trace(geocoderRequest);
         }
         final StringBuilder url = getURLQuery(geocoderRequest);
 
@@ -90,8 +90,8 @@ public class Geocoder {
             url.insert(0, GEOCODE_REQUEST_SERVER_HTTPS);
         }
 
-        if (log.isTraceEnabled()) {
-            log.trace("FULL Request URL: " + url);
+        if (logger.isTraceEnabled()) {
+            logger.trace("FULL Request URL: " + url);
         }
         return url.toString();
     }
@@ -120,8 +120,8 @@ public class Geocoder {
         if (bounds != null) {
             url.append("&bounds=").append(URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8"));
         }
-        if (log.isTraceEnabled()) {
-            log.trace("URL query: " + url);
+        if (logger.isTraceEnabled()) {
+            logger.trace("URL query: " + url);
         }
         return url;
     }
@@ -129,8 +129,8 @@ public class Geocoder {
     protected void addClientIdAndSignURL(StringBuilder url) throws UnsupportedEncodingException {
         url.append("&client=").append(URLEncoder.encode(clientId, "UTF-8"));
 
-        if (log.isTraceEnabled()) {
-            log.trace("URL query to Sign: " + url);
+        if (logger.isTraceEnabled()) {
+            logger.trace("URL query to Sign: " + url);
         }
 
         byte[] sigBytes;
@@ -143,8 +143,8 @@ public class Geocoder {
         signature = signature.replace('+', '-');
         signature = signature.replace('/', '_');
 
-        if (log.isTraceEnabled()) {
-            log.trace("Signature: [" + url + "] for URL query " + url);
+        if (logger.isTraceEnabled()) {
+            logger.trace("Signature: [" + url + "] for URL query " + url);
         }
         url.append("&signature=").append(signature);
     }
