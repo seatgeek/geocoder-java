@@ -8,33 +8,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
-public class GeocoderIT extends BaseGeocoderIT {
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreationClientIdFail() throws Exception {
-        new Geocoder("someClientId", "");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreationClientKeyFail() throws Exception {
-        new Geocoder("", "someClientKey");
-    }
-
-    @Test
-    public void testURL() throws Exception {
-        String res;
-
-        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
-
-        assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=fr", res);
-
-        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").setRegion("fr").getGeocoderRequest());
-        assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=en&region=fr", res);
-
-
-        res = geocoder.getURL(new GeocoderRequestBuilder().setAddress("Winnetka").setBounds(new LatLngBounds(new LatLng("34.172684", "-118.604794"), new LatLng("34.236144", "-118.500938"))).getGeocoderRequest());
-        assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Winnetka&bounds=34.172684%2C-118.604794%7C34.236144%2C-118.500938", res);
-    }
+public class GeocoderIT extends BaseGeocoderTest {
 
     @Test
     public void testGeocode() throws Exception {

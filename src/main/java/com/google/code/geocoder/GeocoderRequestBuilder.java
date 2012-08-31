@@ -1,5 +1,6 @@
 package com.google.code.geocoder;
 
+import com.google.code.geocoder.model.GeocoderComponent;
 import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.LatLng;
 import com.google.code.geocoder.model.LatLngBounds;
@@ -34,6 +35,11 @@ public class GeocoderRequestBuilder {
 
     public GeocoderRequestBuilder setLocation(LatLng location) {
         geocoderRequest.setLocation(location);
+        return this;
+    }
+
+    public GeocoderRequestBuilder addComponent(GeocoderComponent component, String value) {
+        geocoderRequest.addComponent(component, value);
         return this;
     }
 

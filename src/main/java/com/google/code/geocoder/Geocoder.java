@@ -1,9 +1,6 @@
 package com.google.code.geocoder;
 
-import com.google.code.geocoder.model.GeocodeResponse;
-import com.google.code.geocoder.model.GeocoderRequest;
-import com.google.code.geocoder.model.LatLng;
-import com.google.code.geocoder.model.LatLngBounds;
+import com.google.code.geocoder.model.*;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,6 +16,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
@@ -102,6 +101,7 @@ public class Geocoder {
         final String language = geocoderRequest.getLanguage();
         final String region = geocoderRequest.getRegion();
         final LatLng location = geocoderRequest.getLocation();
+        final EnumMap<GeocoderComponent, String> components = geocoderRequest.getComponents();
 
         final StringBuilder url = new StringBuilder(GEOCODE_REQUEST_QUERY_BASIC);
         if (StringUtils.isNotBlank(address)) {
@@ -119,6 +119,21 @@ public class Geocoder {
         }
         if (bounds != null) {
             url.append("&bounds=").append(URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8"));
+        }
+        if (!components.isEmpty()) {
+            url.append("&components=");
+            boolean isFirstLine = true;
+            for (Map.Entry<GeocoderComponent, String> entry : components.entrySet()) {
+                if (isFirstLine) {
+                    isFirstLine = false;
+                } else {
+                    url.append(URLEncoder.encode("|", "UTF-8"));
+                }
+                url.append(URLEncoder.encode(entry.getKey().value(), "UTF-8"));
+                url.append(':');
+                url.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+
         }
         if (logger.isTraceEnabled()) {
             logger.trace("URL query: " + url);

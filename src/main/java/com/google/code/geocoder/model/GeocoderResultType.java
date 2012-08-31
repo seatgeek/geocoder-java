@@ -23,6 +23,7 @@ public enum GeocoderResultType {
     NATURAL_FEATURE("natural_feature"),
     AIRPORT("airport"),
     PARK("park"),
+
     POINT_OF_INTEREST("point_of_interest"),
     POST_BOX("post_box"),
     STREET_NUMBER("street_number"),
