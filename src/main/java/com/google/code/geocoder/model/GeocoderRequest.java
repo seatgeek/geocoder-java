@@ -76,20 +76,6 @@ public class GeocoderRequest implements Serializable {
     }
 
     @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("GeocoderRequest");
-        sb.append("{address='").append(address).append('\'');
-        sb.append(", bounds=").append(bounds);
-        sb.append(", language='").append(language).append('\'');
-        sb.append(", location=").append(location);
-        sb.append(", region='").append(region).append('\'');
-        sb.append(", components='").append(components).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -115,5 +101,17 @@ public class GeocoderRequest implements Serializable {
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (components != null ? components.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GeocoderRequest{" +
+                "address='" + address + '\'' +
+                ", language='" + language + '\'' +
+                ", region='" + region + '\'' +
+                ", bounds=" + bounds +
+                ", location=" + location +
+                ", components=" + components +
+                '}';
     }
 }

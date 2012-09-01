@@ -53,11 +53,9 @@ public class GeocodeResponse implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("GeocodeResponse");
-        sb.append("{status=").append(status);
-        sb.append(", results=").append(results);
-        sb.append('}');
-        return sb.toString();
+        return "GeocodeResponse{" +
+                "status=" + status +
+                ", results=" + results +
+                '}';
     }
 }

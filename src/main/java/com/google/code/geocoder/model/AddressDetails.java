@@ -106,16 +106,14 @@ public class AddressDetails implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("AddressDetails");
-        sb.append("{country='").append(country).append('\'');
-        sb.append(", administrativeAreaLevel1='").append(administrativeAreaLevel1).append('\'');
-        sb.append(", locality='").append(locality).append('\'');
-        sb.append(", subLocality='").append(subLocality).append('\'');
-        sb.append(", route='").append(route).append('\'');
-        sb.append(", street_address='").append(streetAddress).append('\'');
-        sb.append(", subPremise='").append(subPremise).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "AddressDetails{" +
+                "country='" + country + '\'' +
+                ", administrativeAreaLevel1='" + administrativeAreaLevel1 + '\'' +
+                ", locality='" + locality + '\'' +
+                ", subLocality='" + subLocality + '\'' +
+                ", route='" + route + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", subPremise='" + subPremise + '\'' +
+                '}';
     }
 }

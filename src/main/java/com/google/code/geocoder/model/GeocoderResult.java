@@ -85,14 +85,12 @@ public class GeocoderResult implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("GeocoderResult");
-        sb.append("{types=").append(types);
-        sb.append(", formattedAddress='").append(formattedAddress).append('\'');
-        sb.append(", addressComponents=").append(addressComponents);
-        sb.append(", geometry=").append(geometry);
-        sb.append(", partialMatch=").append(partialMatch);
-        sb.append('}');
-        return sb.toString();
+        return "GeocoderResult{" +
+                "types=" + types +
+                ", formattedAddress='" + formattedAddress + '\'' +
+                ", addressComponents=" + addressComponents +
+                ", geometry=" + geometry +
+                ", partialMatch=" + partialMatch +
+                '}';
     }
 }

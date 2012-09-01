@@ -72,11 +72,9 @@ public class LatLngBounds implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("LatLngBounds");
-        sb.append("{southwest=").append(southwest);
-        sb.append(", northeast=").append(northeast);
-        sb.append('}');
-        return sb.toString();
+        return "LatLngBounds{" +
+                "southwest=" + southwest +
+                ", northeast=" + northeast +
+                '}';
     }
 }

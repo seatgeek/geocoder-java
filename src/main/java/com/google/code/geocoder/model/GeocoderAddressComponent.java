@@ -61,12 +61,10 @@ public class GeocoderAddressComponent implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("GeocoderAddressComponent");
-        sb.append("{longName='").append(longName).append('\'');
-        sb.append(", shortName='").append(shortName).append('\'');
-        sb.append(", types=").append(types);
-        sb.append('}');
-        return sb.toString();
+        return "GeocoderAddressComponent{" +
+                "longName='" + longName + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", types=" + types +
+                '}';
     }
 }

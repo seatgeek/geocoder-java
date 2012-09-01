@@ -61,12 +61,10 @@ public class GeocoderGeometry implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("GeocoderGeometry");
-        sb.append("{location=").append(location);
-        sb.append(", locationType=").append(locationType);
-        sb.append(", viewport=").append(viewport);
-        sb.append('}');
-        return sb.toString();
+        return "GeocoderGeometry{" +
+                "location=" + location +
+                ", locationType=" + locationType +
+                ", viewport=" + viewport +
+                '}';
     }
 }
