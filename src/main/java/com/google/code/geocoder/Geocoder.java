@@ -28,6 +28,7 @@ public class Geocoder {
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_QUERY_BASIC = "/maps/api/geocode/json?sensor=false";
+    private static final String ENCODING = "UTF-8";
 
     private final String clientId;
     private final Mac mac;
@@ -65,7 +66,7 @@ public class Geocoder {
 
     protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
         URL url = new URL(urlString);
-        Reader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+        Reader reader = new BufferedReader(new InputStreamReader(url.openStream(), ENCODING));
         try {
             return gson.fromJson(reader, GeocodeResponse.class);
         } finally {
@@ -105,20 +106,20 @@ public class Geocoder {
 
         final StringBuilder url = new StringBuilder(GEOCODE_REQUEST_QUERY_BASIC);
         if (StringUtils.isNotBlank(address)) {
-            url.append("&address=").append(URLEncoder.encode(address, "UTF-8"));
+            url.append("&address=").append(URLEncoder.encode(address, ENCODING));
         } else if (location != null) {
-            url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), "UTF-8"));
+            url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), ENCODING));
         } else {
             throw new IllegalArgumentException("Address or location must be defined");
         }
         if (StringUtils.isNotBlank(language)) {
-            url.append("&language=").append(URLEncoder.encode(language, "UTF-8"));
+            url.append("&language=").append(URLEncoder.encode(language, ENCODING));
         }
         if (StringUtils.isNotBlank(region)) {
-            url.append("&region=").append(URLEncoder.encode(region, "UTF-8"));
+            url.append("&region=").append(URLEncoder.encode(region, ENCODING));
         }
         if (bounds != null) {
-            url.append("&bounds=").append(URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), "UTF-8"));
+            url.append("&bounds=").append(URLEncoder.encode(bounds.getSouthwest().toUrlValue() + "|" + bounds.getNortheast().toUrlValue(), ENCODING));
         }
         if (!components.isEmpty()) {
             url.append("&components=");
@@ -127,11 +128,11 @@ public class Geocoder {
                 if (isFirstLine) {
                     isFirstLine = false;
                 } else {
-                    url.append(URLEncoder.encode("|", "UTF-8"));
+                    url.append(URLEncoder.encode("|", ENCODING));
                 }
-                url.append(URLEncoder.encode(entry.getKey().value(), "UTF-8"));
+                url.append(URLEncoder.encode(entry.getKey().value(), ENCODING));
                 url.append(':');
-                url.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+                url.append(URLEncoder.encode(entry.getValue(), ENCODING));
             }
 
         }
@@ -142,7 +143,7 @@ public class Geocoder {
     }
 
     protected void addClientIdAndSignURL(StringBuilder url) throws UnsupportedEncodingException {
-        url.append("&client=").append(URLEncoder.encode(clientId, "UTF-8"));
+        url.append("&client=").append(URLEncoder.encode(clientId, ENCODING));
 
         if (logger.isTraceEnabled()) {
             logger.trace("URL query to Sign: " + url);
