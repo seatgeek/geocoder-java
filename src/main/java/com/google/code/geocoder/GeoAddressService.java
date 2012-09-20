@@ -11,6 +11,12 @@ import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
 
+/**
+ * This class is used as service class. this class used for 
+ * searching for geo location points by address which represented as string
+ * @author igal
+ *
+ */
 public class GeoAddressService implements GeoSearchableAddress{
 	
 	private static Geocoder geocoder;
