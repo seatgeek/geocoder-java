@@ -1,10 +1,12 @@
 package com.google.code.geocoder;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
+@Ignore
 public class ProxyGeocoderIT extends GeocoderIT {
     @BeforeClass
     public static void setUp() {
