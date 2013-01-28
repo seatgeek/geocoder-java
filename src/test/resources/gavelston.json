@@ -1,0 +1,74 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "17200",
+               "short_name" : "17200",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Farm to Market 3005",
+               "short_name" : "Farm to Market 3005",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Galveston",
+               "short_name" : "Galveston",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Galveston",
+               "short_name" : "Galveston",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Texas",
+               "short_name" : "TX",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "77554",
+               "short_name" : "77554",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "17200 Farm to Market 3005, Galveston, TX 77554, USA",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 29.25060640,
+                  "lng" : -94.85418519999999
+               },
+               "southwest" : {
+                  "lat" : 29.25059310,
+                  "lng" : -94.85419549999999
+               }
+            },
+            "location" : {
+               "lat" : 29.25060640,
+               "lng" : -94.85419549999999
+            },
+            "location_type" : "RANGE_INTERPOLATED",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 29.25194873029150,
+                  "lng" : -94.85284136970850
+               },
+               "southwest" : {
+                  "lat" : 29.24925076970850,
+                  "lng" : -94.85553933029151
+               }
+            }
+         },
+         "partial_match" : true,
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}

@@ -12,6 +12,7 @@ public class GeocoderGeometry implements Serializable {
     private LatLng location;
     private GeocoderLocationType locationType;
     private LatLngBounds viewport;
+    private LatLngBounds bounds;
 
     public LatLng getLocation() {
         return location;
@@ -37,6 +38,14 @@ public class GeocoderGeometry implements Serializable {
         this.viewport = viewport;
     }
 
+    public LatLngBounds getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(LatLngBounds bounds) {
+        this.bounds = bounds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +56,7 @@ public class GeocoderGeometry implements Serializable {
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
         if (locationType != that.locationType) return false;
         if (viewport != null ? !viewport.equals(that.viewport) : that.viewport != null) return false;
+        if (bounds != null ? !bounds.equals(that.bounds) : that.bounds != null) return false;
 
         return true;
     }
@@ -56,6 +66,7 @@ public class GeocoderGeometry implements Serializable {
         int result = location != null ? location.hashCode() : 0;
         result = 31 * result + (locationType != null ? locationType.hashCode() : 0);
         result = 31 * result + (viewport != null ? viewport.hashCode() : 0);
+        result = 31 * result + (bounds != null ? bounds.hashCode() : 0);
         return result;
     }
 
@@ -65,6 +76,7 @@ public class GeocoderGeometry implements Serializable {
                 "location=" + location +
                 ", locationType=" + locationType +
                 ", viewport=" + viewport +
+                ", bounds=" + bounds +
                 '}';
     }
 }
