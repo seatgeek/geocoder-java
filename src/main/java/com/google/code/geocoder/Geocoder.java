@@ -5,7 +5,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -39,10 +38,10 @@ public class Geocoder {
     }
 
     public Geocoder(final String clientId, final String clientKey) throws InvalidKeyException {
-        if (StringUtils.isBlank(clientId)) {
+        if (clientId == null || clientId.length() == 0) {
             throw new IllegalArgumentException("ClientId is not defined");
         }
-        if (StringUtils.isBlank(clientKey)) {
+        if (clientKey == null || clientKey.length() == 0) {
             throw new IllegalArgumentException("ClientKey is not defined");
         }
 
@@ -105,17 +104,17 @@ public class Geocoder {
         final EnumMap<GeocoderComponent, String> components = geocoderRequest.getComponents();
 
         final StringBuilder url = new StringBuilder(GEOCODE_REQUEST_QUERY_BASIC);
-        if (StringUtils.isNotBlank(address)) {
+        if (address != null && address.length() > 0) {
             url.append("&address=").append(URLEncoder.encode(address, ENCODING));
         } else if (location != null) {
             url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), ENCODING));
         } else {
             throw new IllegalArgumentException("Address or location must be defined");
         }
-        if (StringUtils.isNotBlank(language)) {
+        if (language != null && language.length() > 0) {
             url.append("&language=").append(URLEncoder.encode(language, ENCODING));
         }
-        if (StringUtils.isNotBlank(region)) {
+        if (region != null && region.length() > 0) {
             url.append("&region=").append(URLEncoder.encode(region, ENCODING));
         }
         if (bounds != null) {
