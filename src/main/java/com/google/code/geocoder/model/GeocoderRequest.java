@@ -10,6 +10,7 @@ import java.util.EnumMap;
 public class GeocoderRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private String channel;         //for business account
     private String address;         //Address. Optional.
     private String language;        //Preferred language for results. Optional.
     private String region;          //Country code top-level domain within which to search. Optional.
@@ -25,6 +26,14 @@ public class GeocoderRequest implements Serializable {
         this();
         this.address = address;
         this.language = language;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     public String getAddress() {
@@ -84,6 +93,7 @@ public class GeocoderRequest implements Serializable {
 
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (bounds != null ? !bounds.equals(that.bounds) : that.bounds != null) return false;
+        if (channel != null ? !channel.equals(that.channel) : that.channel != null) return false;
         if (components != null ? !components.equals(that.components) : that.components != null) return false;
         if (language != null ? !language.equals(that.language) : that.language != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
@@ -94,7 +104,8 @@ public class GeocoderRequest implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = address != null ? address.hashCode() : 0;
+        int result = channel != null ? channel.hashCode() : 0;
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (region != null ? region.hashCode() : 0);
         result = 31 * result + (bounds != null ? bounds.hashCode() : 0);
@@ -106,7 +117,8 @@ public class GeocoderRequest implements Serializable {
     @Override
     public String toString() {
         return "GeocoderRequest{" +
-                "address='" + address + '\'' +
+                "channel='" + channel + '\'' +
+                ", address='" + address + '\'' +
                 ", language='" + language + '\'' +
                 ", region='" + region + '\'' +
                 ", bounds=" + bounds +

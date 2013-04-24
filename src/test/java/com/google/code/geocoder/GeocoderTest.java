@@ -18,11 +18,13 @@ public class GeocoderTest extends BaseGeocoderTest {
     }
 
     @Test
-    public void testURLAddressLanguage() throws Exception {
+    public void testURLParams() throws Exception {
         String res;
 
-        res = GeocoderIT.geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
+        res = GeocoderIT.geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setChannel("test").getGeocoderRequest());
+        assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&channel=test&address=Paris%2C+France", res);
 
+        res = GeocoderIT.geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("fr").getGeocoderRequest());
         assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Paris%2C+France&language=fr", res);
 
         res = GeocoderIT.geocoder.getURL(new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").setRegion("fr").getGeocoderRequest());

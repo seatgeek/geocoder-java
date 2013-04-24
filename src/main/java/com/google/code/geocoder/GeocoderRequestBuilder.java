@@ -11,14 +11,17 @@ import com.google.code.geocoder.model.LatLngBounds;
 public class GeocoderRequestBuilder {
     private final GeocoderRequest geocoderRequest = new GeocoderRequest();
 
+    public GeocoderRequestBuilder setChannel(String channel) {
+        geocoderRequest.setChannel(channel);
+        return this;
+    }
+
     public GeocoderRequestBuilder setAddress(String address) {
         geocoderRequest.setAddress(address);
         return this;
     }
 
-    public GeocoderRequestBuilder
-
-    setLanguage(String language) {
+    public GeocoderRequestBuilder setLanguage(String language) {
         geocoderRequest.setLanguage(language);
         return this;
     }

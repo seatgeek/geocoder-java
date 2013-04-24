@@ -96,6 +96,7 @@ public class Geocoder {
     }
 
     protected StringBuilder getURLQuery(GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
+        final String channel = geocoderRequest.getChannel();
         final String address = geocoderRequest.getAddress();
         final LatLngBounds bounds = geocoderRequest.getBounds();
         final String language = geocoderRequest.getLanguage();
@@ -104,6 +105,10 @@ public class Geocoder {
         final EnumMap<GeocoderComponent, String> components = geocoderRequest.getComponents();
 
         final StringBuilder url = new StringBuilder(GEOCODE_REQUEST_QUERY_BASIC);
+
+        if (channel != null && channel.length() > 0) {
+            url.append("&channel=").append(URLEncoder.encode(channel, ENCODING));
+        }
         if (address != null && address.length() > 0) {
             url.append("&address=").append(URLEncoder.encode(address, ENCODING));
         } else if (location != null) {
