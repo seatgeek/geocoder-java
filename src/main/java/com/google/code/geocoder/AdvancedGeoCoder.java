@@ -9,12 +9,20 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.security.InvalidKeyException;
 
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class AdvancedGeoCoder extends Geocoder {
     private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
+
+    public AdvancedGeoCoder() {
+    }
+
+    public AdvancedGeoCoder(final String clientId, final String clientKey) throws InvalidKeyException {
+        super(clientId, clientKey);
+    }
 
     public synchronized HttpClient getHttpClient() {
         return httpClient;
