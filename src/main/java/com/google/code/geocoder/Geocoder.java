@@ -5,8 +5,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -22,7 +22,7 @@ import java.util.Map;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private static final Log logger = LogFactory.getLog(Geocoder.class);
+    private static final Logger logger = LoggerFactory.getLogger(Geocoder.class);
 
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
@@ -58,14 +58,14 @@ public class Geocoder {
 
             return request(gson, urlString);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            logger.error("Can't execute request", e);
             return null;
         }
     }
 
     protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
-        URL url = new URL(urlString);
-        Reader reader = new BufferedReader(new InputStreamReader(url.openStream(), ENCODING));
+        final URL url = new URL(urlString);
+        final Reader reader = new BufferedReader(new InputStreamReader(url.openStream(), ENCODING));
         try {
             return gson.fromJson(reader, GeocodeResponse.class);
         } finally {
@@ -74,9 +74,7 @@ public class Geocoder {
     }
 
     protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
-        if (logger.isTraceEnabled()) {
-            logger.trace(geocoderRequest);
-        }
+        logger.trace("Request {}", geocoderRequest);
         final StringBuilder url = getURLQuery(geocoderRequest);
 
         if (mac == null) {
@@ -89,9 +87,7 @@ public class Geocoder {
             url.insert(0, GEOCODE_REQUEST_SERVER_HTTPS);
         }
 
-        if (logger.isTraceEnabled()) {
-            logger.trace("FULL Request URL: " + url);
-        }
+        logger.trace("FULL Request URL: {}", url);
         return url.toString();
     }
 
@@ -140,18 +136,14 @@ public class Geocoder {
             }
 
         }
-        if (logger.isTraceEnabled()) {
-            logger.trace("URL query: " + url);
-        }
+        logger.trace("URL query: {}", url);
         return url;
     }
 
     protected void addClientIdAndSignURL(StringBuilder url) throws UnsupportedEncodingException {
         url.append("&client=").append(URLEncoder.encode(clientId, ENCODING));
 
-        if (logger.isTraceEnabled()) {
-            logger.trace("URL query to Sign: " + url);
-        }
+        logger.trace("URL query to Sign: {}", url);
 
         byte[] sigBytes;
         synchronized (mac) {
@@ -164,7 +156,7 @@ public class Geocoder {
         signature = signature.replace('/', '_');
 
         if (logger.isTraceEnabled()) {
-            logger.trace("Signature: [" + url + "] for URL query " + url);
+            logger.trace("Signature: [{}] for URL query {}", signature, url);
         }
         url.append("&signature=").append(signature);
     }
