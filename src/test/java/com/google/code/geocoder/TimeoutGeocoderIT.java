@@ -13,7 +13,6 @@ public class TimeoutGeocoderIT extends GeocoderIT {
     @BeforeClass
     public static void setUp() {
         final HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
-        httpClient.getHostConfiguration().setProxy("85.25.109.152", 3128);
         httpClient.getParams().setParameter(HttpMethodParams.SO_TIMEOUT, 60 * 1000);
 
         geocoder = new AdvancedGeoCoder(httpClient);
