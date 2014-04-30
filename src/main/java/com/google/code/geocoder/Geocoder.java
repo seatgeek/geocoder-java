@@ -24,8 +24,9 @@ import java.util.Map;
 public class Geocoder {
     private static final Logger logger = LoggerFactory.getLogger(Geocoder.class);
 
-    private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://maps.googleapis.com";
-    private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://maps.googleapis.com";
+    private static final String GEOCODE_REQUEST_HOST = "maps.googleapis.com";
+    private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://" + GEOCODE_REQUEST_HOST;
+    private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://" + GEOCODE_REQUEST_HOST;
     private static final String GEOCODE_REQUEST_QUERY_BASIC = "/maps/api/geocode/json?sensor=false";
     private static final String ENCODING = "UTF-8";
 
@@ -71,6 +72,10 @@ public class Geocoder {
         } finally {
             reader.close();
         }
+    }
+
+    public static String getGeocoderHost() {
+        return GEOCODE_REQUEST_HOST;
     }
 
     protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {

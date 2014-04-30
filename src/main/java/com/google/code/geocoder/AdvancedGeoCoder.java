@@ -15,20 +15,27 @@ import java.security.InvalidKeyException;
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class AdvancedGeoCoder extends Geocoder {
-    private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
+    private final HttpClient httpClient;
+
+    public AdvancedGeoCoder(final HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     public AdvancedGeoCoder() {
+        this(new HttpClient(new MultiThreadedHttpConnectionManager()));
     }
 
     public AdvancedGeoCoder(final String clientId, final String clientKey) throws InvalidKeyException {
         super(clientId, clientKey);
+        httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
     }
 
-    public synchronized HttpClient getHttpClient() {
-        return httpClient;
+    public AdvancedGeoCoder(final HttpClient httpClient, final String clientId, final String clientKey) throws InvalidKeyException {
+        super(clientId, clientKey);
+        this.httpClient = httpClient;
     }
 
-    protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
+    protected GeocodeResponse request(final Gson gson, final String urlString) throws IOException {
         final GetMethod getMethod = new GetMethod(urlString);
         try {
             httpClient.executeMethod(getMethod);
