@@ -51,17 +51,14 @@ public class Geocoder {
     }
 
 
-    public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) {
-        try {
-            final Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+    public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) throws IOException {
 
-            final String urlString = getURL(geocoderRequest);
+        final Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 
-            return request(gson, urlString);
-        } catch (Exception e) {
-            logger.error("Can't execute request", e);
-            return null;
-        }
+        final String urlString = getURL(geocoderRequest);
+
+        return request(gson, urlString);
+
     }
 
     protected GeocodeResponse request(Gson gson, String urlString) throws IOException {
