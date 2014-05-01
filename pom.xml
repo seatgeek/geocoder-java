@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <!-- The Basics -->
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
-    <version>0.16-SNAPSHOT</version>
+    <version>0.16</version>
     <packaging>jar</packaging>
 
     <name>Geocoder</name>
@@ -313,9 +312,9 @@
     <!--<ciManagement>...</ciManagement>-->
     <!--<mailingLists>...</mailingLists>-->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.googlecode.com/svn/trunk/</url>
+        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.16</connection>
+        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.16</developerConnection>
+        <url>https://geocoder-java.googlecode.com/svn/tags/geocoder-java-0.16</url>
     </scm>
     <!--<prerequisites>...</prerequisites>-->
     <repositories>
