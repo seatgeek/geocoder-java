@@ -1,15 +1,15 @@
 package com.google.code.geocoder.model;
 
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class GeocoderResultParseTest extends Assert {
 
@@ -17,7 +17,7 @@ public class GeocoderResultParseTest extends Assert {
 	public void testDeseralization() throws Exception {
 		GeocodeResponse expected = new GeocodeResponse();
 		expected.setStatus(GeocoderStatus.OK);
-		
+
 		GeocoderResult result = new GeocoderResult();
 		result.setPartialMatch(true);
 		result.setTypes(Arrays.asList("street_address"));
@@ -39,7 +39,7 @@ public class GeocoderResultParseTest extends Assert {
 		result.setGeometry(geometry);
 
 		expected.setResults(Arrays.asList(result));
-		
+
 		assertParsedResponse("src/test/resources/gavelston.json", expected);
 	}
 
@@ -50,7 +50,7 @@ public class GeocoderResultParseTest extends Assert {
 		assertNotNull(response);
 		assertEquals(expected, response);
 	}
-	
+
 	private GeocoderAddressComponent newComponent(String shortName, String longName, String ... types) {
 		GeocoderAddressComponent c = new GeocoderAddressComponent();
 		c.setShortName(shortName);

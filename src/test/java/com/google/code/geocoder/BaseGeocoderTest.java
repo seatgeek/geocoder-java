@@ -11,7 +11,7 @@ public abstract class BaseGeocoderTest extends Assert {
 
     @BeforeClass
     public static void setUp() {
-        geocoder = new Geocoder();
+        geocoder = new Geocoder(GeocoderLogger.NOP_LOGGER);
     }
 
 }

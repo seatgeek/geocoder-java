@@ -6,9 +6,13 @@ import static org.junit.Assert.assertEquals;
 
 public class SignatureTest extends Geocoder {
 
+    public SignatureTest() {
+        super(GeocoderLogger.NOP_LOGGER);
+    }
+
     @Test
     public void testSignature() throws Exception {
-        Geocoder geocoder = new Geocoder("clientID", "vNIXE0xscrmjlyV-12Nj_BvUPaw=");
+        Geocoder geocoder = new Geocoder("clientID", "vNIXE0xscrmjlyV-12Nj_BvUPaw=", GeocoderLogger.NOP_LOGGER);
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-000"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-001"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-002"));
@@ -24,7 +28,7 @@ public class SignatureTest extends Geocoder {
 
     @Test
     public void testAdvSignature() throws Exception {
-        Geocoder geocoder = new AdvancedGeoCoder("clientID", "vNIXE0xscrmjlyV-12Nj_BvUPaw=");
+        Geocoder geocoder = new AdvancedGeoCoder("clientID", "vNIXE0xscrmjlyV-12Nj_BvUPaw=", GeocoderLogger.NOP_LOGGER);
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-000"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-001"));
         geocoder.addClientIdAndSignURL(new StringBuilder("Some data to test re-usage of signer: bla-bla-002"));

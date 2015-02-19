@@ -1,16 +1,21 @@
 package com.google.code.geocoder;
 
-import com.google.code.geocoder.model.*;
+import com.google.code.geocoder.model.GeocodeResponse;
+import com.google.code.geocoder.model.GeocoderComponent;
+import com.google.code.geocoder.model.GeocoderRequest;
+import com.google.code.geocoder.model.LatLng;
+import com.google.code.geocoder.model.LatLngBounds;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.*;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
@@ -18,27 +23,34 @@ import java.security.NoSuchAlgorithmException;
 import java.util.EnumMap;
 import java.util.Map;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 /**
  * @author <a href="mailto:panchmp@gmail.com">Michael Panchenko</a>
  */
 public class Geocoder {
-    private static final Logger logger = LoggerFactory.getLogger(Geocoder.class);
-
     private static final String GEOCODE_REQUEST_HOST = "maps.googleapis.com";
+
     private static final String GEOCODE_REQUEST_SERVER_HTTP = "http://" + GEOCODE_REQUEST_HOST;
     private static final String GEOCODE_REQUEST_SERVER_HTTPS = "https://" + GEOCODE_REQUEST_HOST;
     private static final String GEOCODE_REQUEST_QUERY_BASIC = "/maps/api/geocode/json?sensor=false";
     private static final String ENCODING = "UTF-8";
 
+    private final GeocoderLogger logger; // = LoggerFactory.getLogger(Geocoder.class);
     private final String clientId;
     private final Mac mac;
 
-    public Geocoder() {
+    public Geocoder(GeocoderLogger logger) {
+        this.logger = logger;
         clientId = null;
         mac = null;
     }
 
-    public Geocoder(final String clientId, final String clientKey) throws InvalidKeyException {
+    public Geocoder(final String clientId, final String clientKey, GeocoderLogger logger) throws InvalidKeyException {
+        if (logger == null) {
+            throw new IllegalArgumentException("GeocoderLogger is not defined");
+        }
         if (clientId == null || clientId.length() == 0) {
             throw new IllegalArgumentException("ClientId is not defined");
         }
@@ -46,6 +58,7 @@ public class Geocoder {
             throw new IllegalArgumentException("ClientKey is not defined");
         }
 
+        this.logger = logger;
         this.clientId = clientId;
         this.mac = getMAC(clientKey);
     }
@@ -76,7 +89,7 @@ public class Geocoder {
     }
 
     protected String getURL(final GeocoderRequest geocoderRequest) throws UnsupportedEncodingException {
-        logger.trace("Request {}", geocoderRequest);
+        logger.log(String.format("Request %s", geocoderRequest));
         final StringBuilder url = getURLQuery(geocoderRequest);
 
         if (mac == null) {
@@ -89,7 +102,7 @@ public class Geocoder {
             url.insert(0, GEOCODE_REQUEST_SERVER_HTTPS);
         }
 
-        logger.trace("FULL Request URL: {}", url);
+        logger.log(String.format("FULL Request URL: %s", url));
         return url.toString();
     }
 
@@ -138,14 +151,14 @@ public class Geocoder {
             }
 
         }
-        logger.trace("URL query: {}", url);
+        logger.log(String.format("URL query: %s", url));
         return url;
     }
 
     protected void addClientIdAndSignURL(StringBuilder url) throws UnsupportedEncodingException {
         url.append("&client=").append(URLEncoder.encode(clientId, ENCODING));
 
-        logger.trace("URL query to Sign: {}", url);
+        logger.log(String.format("URL query to Sign: %s", url));
 
         byte[] sigBytes;
         synchronized (mac) {
@@ -157,9 +170,8 @@ public class Geocoder {
         signature = signature.replace('+', '-');
         signature = signature.replace('/', '_');
 
-        if (logger.isTraceEnabled()) {
-            logger.trace("Signature: [{}] for URL query {}", signature, url);
-        }
+        logger.log(String.format("Signature: [%s] for URL query %s", signature, url));
+
         url.append("&signature=").append(signature);
     }
 

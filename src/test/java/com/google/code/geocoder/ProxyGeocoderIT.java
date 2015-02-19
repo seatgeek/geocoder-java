@@ -15,7 +15,7 @@ public class ProxyGeocoderIT extends GeocoderIT {
         final HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
         httpClient.getHostConfiguration().setProxy("85.25.109.152", 3128);
 
-        geocoder = new AdvancedGeoCoder(httpClient);
+        geocoder = new AdvancedGeoCoder(httpClient, GeocoderLogger.NOP_LOGGER);
     }
 }
 

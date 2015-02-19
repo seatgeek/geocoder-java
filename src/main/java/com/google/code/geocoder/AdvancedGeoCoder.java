@@ -17,21 +17,22 @@ import java.security.InvalidKeyException;
 public class AdvancedGeoCoder extends Geocoder {
     private final HttpClient httpClient;
 
-    public AdvancedGeoCoder(final HttpClient httpClient) {
+    public AdvancedGeoCoder(final HttpClient httpClient, GeocoderLogger logger) {
+        super(logger);
         this.httpClient = httpClient;
     }
 
-    public AdvancedGeoCoder() {
-        this(new HttpClient(new MultiThreadedHttpConnectionManager()));
+    public AdvancedGeoCoder(GeocoderLogger logger) {
+        this(new HttpClient(new MultiThreadedHttpConnectionManager()), logger);
     }
 
-    public AdvancedGeoCoder(final String clientId, final String clientKey) throws InvalidKeyException {
-        super(clientId, clientKey);
+    public AdvancedGeoCoder(final String clientId, final String clientKey, GeocoderLogger logger) throws InvalidKeyException {
+        super(clientId, clientKey, logger);
         httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
     }
 
-    public AdvancedGeoCoder(final HttpClient httpClient, final String clientId, final String clientKey) throws InvalidKeyException {
-        super(clientId, clientKey);
+    public AdvancedGeoCoder(final HttpClient httpClient, final String clientId, final String clientKey, GeocoderLogger logger) throws InvalidKeyException {
+        super(clientId, clientKey, logger);
         this.httpClient = httpClient;
     }
 

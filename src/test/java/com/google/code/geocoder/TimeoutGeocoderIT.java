@@ -15,6 +15,6 @@ public class TimeoutGeocoderIT extends GeocoderIT {
         final HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
         httpClient.getParams().setParameter(HttpMethodParams.SO_TIMEOUT, 60 * 1000);
 
-        geocoder = new AdvancedGeoCoder(httpClient);
+        geocoder = new AdvancedGeoCoder(httpClient, GeocoderLogger.NOP_LOGGER);
     }
 }
